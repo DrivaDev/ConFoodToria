@@ -44,10 +44,10 @@ const TextureCard = React.forwardRef<
       )}
       {...props}
     >
-      <div className="border dark:border-neutral-900/80 border-black/10 rounded-[calc(var(--radius)-1px)]">
-        <div className="border dark:border-neutral-950 border-white/50 rounded-[calc(var(--radius)-2px)]">
-          <div className="border dark:border-neutral-900/70 border-neutral-950/20 rounded-[calc(var(--radius)-3px)]">
-            <div className=" w-full border border-white/50 dark:border-neutral-700/50 text-neutral-500 bg-gradient-to-b from-card/70 to-secondary/50 rounded-[calc(var(--radius)-4px)] ">
+      <div className="border dark:border-neutral-900/80 border-black/10 rounded-[calc(var(--radius)-1px)] h-full">
+        <div className="border dark:border-neutral-950 border-white/50 rounded-[calc(var(--radius)-2px)] h-full">
+          <div className="border dark:border-neutral-900/70 border-neutral-950/20 rounded-[calc(var(--radius)-3px)] h-full">
+            <div className="w-full border border-white/50 dark:border-neutral-700/50 text-neutral-500 bg-gradient-to-b from-card/70 to-secondary/50 rounded-[calc(var(--radius)-4px)] h-full">
               {children}
             </div>
           </div>

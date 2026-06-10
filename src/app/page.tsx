@@ -1,10 +1,9 @@
-import Link from "next/link"
 import { TextureCard, TextureCardContent } from "@/components/ui/texture-card"
-import { TextureButton } from "@/components/ui/texture-button"
+import { BtnDark, BtnOutline, BtnLight, BtnGhost } from "@/components/Btn"
 import Hero3D from "@/components/Hero3D"
 
 const ArrowRight = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
   </svg>
 )
@@ -39,31 +38,25 @@ export default function Home() {
       {/* HERO */}
       <section className="min-h-screen grid md:grid-cols-2 items-center bg-cream pt-[70px]">
         <div className="px-8 md:px-16 py-20 md:py-0">
-          <div className="font-sans text-[0.65rem] font-semibold tracking-[0.18em] uppercase text-sand-dark mb-6">
+          <div className="font-sans text-[0.62rem] font-semibold tracking-[0.18em] uppercase text-sand-dark mb-6">
             Consultoría Gastronómica · Buenos Aires
           </div>
           <h1 className="font-serif text-[3.2rem] md:text-[4.5rem] font-light leading-[1.05] tracking-[-0.03em] text-brown mb-6">
             Gestión<br />
-            <em className="italic">profesional</em><br />
+            <em className="italic font-light">profesional</em><br />
             para negocios<br />
             gastronómicos
           </h1>
-          <p className="font-sans text-[0.75rem] tracking-[0.1em] uppercase text-sand-dark mb-10">
+          <p className="font-sans text-[0.68rem] tracking-[0.14em] uppercase text-sand-dark mb-10">
             Metodología Harvard · Resultados Medibles
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/servicios">
-              <TextureButton variant="primary" size="default" className="w-auto">
-                <span className="flex items-center gap-2 px-2">
-                  Nuestros servicios <ArrowRight />
-                </span>
-              </TextureButton>
-            </Link>
-            <Link href="/casos">
-              <TextureButton variant="secondary" size="default" className="w-auto">
-                <span className="px-2 text-brown">Ver caso de éxito</span>
-              </TextureButton>
-            </Link>
+            <BtnDark href="/servicios">
+              Nuestros servicios <ArrowRight />
+            </BtnDark>
+            <BtnOutline href="/casos">
+              Ver caso de éxito <ArrowRight />
+            </BtnOutline>
           </div>
         </div>
         <div className="h-[50vh] md:h-screen">
@@ -76,7 +69,7 @@ export default function Home() {
         <div className="ticker-track flex whitespace-nowrap">
           {[...Array(2)].map((_, r) =>
             ["Diagnóstico", "Diseño de soluciones", "Implementación", "Seguimiento", "Resultados medibles", "Metodología Harvard", "Buenos Aires Provincia", "Ruta 5"].map((item) => (
-              <span key={`${r}-${item}`} className="font-sans text-[0.7rem] tracking-[0.12em] uppercase text-sand-dark px-6">
+              <span key={`${r}-${item}`} className="font-sans text-[0.65rem] tracking-[0.14em] uppercase text-sand-dark px-6">
                 {item} <span className="text-gold font-bold">·</span>
               </span>
             ))
@@ -89,7 +82,7 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-8 md:px-16">
           <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-start">
             <div>
-              <div className="font-sans text-[0.62rem] font-semibold tracking-[0.18em] uppercase text-gold mb-4">
+              <div className="font-sans text-[0.6rem] font-semibold tracking-[0.18em] uppercase text-gold mb-4">
                 Quiénes somos
               </div>
               <h2 className="font-serif text-[2.6rem] font-light leading-[1.1] tracking-[-0.02em] text-brown">
@@ -103,9 +96,9 @@ export default function Home() {
               <p className="text-[0.9rem] text-brown-light leading-relaxed font-light mb-8">
                 No somos una consultora generalista. Conocemos de cerca la dinámica operativa del sector porque venimos de ahí. Eso nos da credibilidad, velocidad diagnóstica y propuestas que realmente se pueden implementar.
               </p>
-              <Link href="/nosotros" className="inline-flex items-center gap-2 font-sans text-[0.72rem] font-semibold tracking-[0.12em] uppercase text-brown hover:text-gold transition-colors border-b border-brown hover:border-gold pb-1">
+              <BtnGhost href="/nosotros">
                 Conocer el equipo <ArrowRight />
-              </Link>
+              </BtnGhost>
             </div>
           </div>
 
@@ -137,32 +130,32 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-8 md:px-16">
           <div className="flex justify-between items-end mb-16 flex-wrap gap-5">
             <div>
-              <div className="font-sans text-[0.62rem] font-semibold tracking-[0.18em] uppercase text-gold mb-4">
+              <div className="font-sans text-[0.6rem] font-semibold tracking-[0.18em] uppercase text-gold mb-4">
                 Portfolio
               </div>
               <h2 className="font-serif text-[2.6rem] font-light leading-[1.1] tracking-[-0.02em] text-brown">
                 Servicios diseñados<br />para <em className="italic">cada etapa</em>
               </h2>
             </div>
-            <Link href="/servicios" className="inline-flex items-center gap-2 font-sans text-[0.72rem] font-semibold tracking-[0.12em] uppercase text-brown hover:text-gold transition-colors border-b border-brown hover:border-gold pb-1">
-              Ver todos <ArrowRight />
-            </Link>
+            <BtnGhost href="/servicios">
+              Ver todos los servicios <ArrowRight />
+            </BtnGhost>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-5 items-stretch">
             {services.map((s) => (
-              <TextureCard key={s.num} className="group hover:-translate-y-1 transition-transform duration-300">
-                <TextureCardContent className="p-8">
+              <TextureCard key={s.num} className="h-full hover:-translate-y-1 transition-transform duration-300">
+                <TextureCardContent className="p-8 flex flex-col h-full">
                   <div className="font-serif text-[3rem] font-light text-beige leading-none mb-5 tracking-[-0.03em]">
                     {s.num}
                   </div>
                   <h3 className="font-serif text-[1.2rem] font-light text-brown mb-3">
                     {s.name} <em className="italic">{s.em}</em>
                   </h3>
-                  <p className="text-[0.84rem] text-brown-light leading-relaxed font-light mb-6">
+                  <p className="text-[0.84rem] text-brown-light leading-relaxed font-light flex-1 mb-6">
                     {s.desc}
                   </p>
-                  <div className="font-sans text-[0.75rem] text-gold font-medium tracking-[0.05em]">
+                  <div className="font-sans text-[0.68rem] text-gold font-semibold tracking-[0.08em] pt-4 border-t border-beige">
                     {s.price}
                   </div>
                 </TextureCardContent>
@@ -210,13 +203,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Link href="/casos">
-            <TextureButton variant="secondary" size="default" className="w-auto">
-              <span className="flex items-center gap-2 px-2 text-brown">
-                Ver caso completo <ArrowRight />
-              </span>
-            </TextureButton>
-          </Link>
+          <BtnOutline href="/casos">
+            Ver caso completo <ArrowRight />
+          </BtnOutline>
         </div>
       </section>
 
@@ -225,13 +214,9 @@ export default function Home() {
         <h2 className="font-serif text-[2.2rem] md:text-[2.8rem] font-light text-white leading-[1.1] tracking-[-0.02em]">
           ¿Tu negocio tiene potencial sin <em className="italic text-gold">explotar</em>?
         </h2>
-        <Link href="/contacto" className="shrink-0">
-          <TextureButton variant="minimal" size="lg" className="w-auto border-sand/40">
-            <span className="flex items-center gap-2 px-4 text-cream">
-              Solicitar diagnóstico <ArrowRight />
-            </span>
-          </TextureButton>
-        </Link>
+        <BtnLight href="/contacto" className="shrink-0">
+          Solicitar diagnóstico <ArrowRight />
+        </BtnLight>
       </div>
     </>
   )

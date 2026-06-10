@@ -1,14 +1,14 @@
 import type { Metadata } from "next"
-import { Fraunces, Syne, Inter } from "next/font/google"
+import { Cormorant_Garamond, Syne, Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
-const fraunces = Fraunces({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-serif",
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
 })
 
 const syne = Syne({
@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${fraunces.variable} ${syne.variable} ${inter.variable} antialiased bg-cream text-brown`}
+        className={`${cormorant.variable} ${syne.variable} ${inter.variable} antialiased bg-cream text-brown`}
       >
         <Navbar />
         <main>{children}</main>

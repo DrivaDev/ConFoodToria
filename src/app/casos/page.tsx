@@ -1,8 +1,7 @@
-import Link from "next/link"
-import { TextureButton } from "@/components/ui/texture-button"
+import { BtnLight } from "@/components/Btn"
 
 const ArrowRight = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
   </svg>
 )
@@ -233,13 +232,9 @@ export default function Casos() {
           ¿Tu negocio tiene un problema<br className="hidden md:block" />
           <em className="italic text-gold"> similar al de Estancia Rodríguez</em>?
         </h2>
-        <Link href="/contacto" className="shrink-0">
-          <TextureButton variant="minimal" size="lg" className="w-auto">
-            <span className="flex items-center gap-2 px-4 text-cream">
-              Hablemos <ArrowRight />
-            </span>
-          </TextureButton>
-        </Link>
+        <BtnLight href="/contacto" className="shrink-0">
+          Hablemos <ArrowRight />
+        </BtnLight>
       </div>
     </>
   )

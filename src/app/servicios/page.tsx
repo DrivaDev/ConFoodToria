@@ -1,8 +1,7 @@
-import Link from "next/link"
-import { TextureButton } from "@/components/ui/texture-button"
+import { BtnDark, BtnLight } from "@/components/Btn"
 
 const ArrowRight = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
   </svg>
 )
@@ -141,11 +140,11 @@ export default function Servicios() {
                     <div className="font-sans text-[0.72rem] text-sand-dark mt-1">{s.priceSub}</div>
                   )}
                 </div>
-                <Link href="/contacto" className="mt-6 inline-block">
-                  <TextureButton variant="primary" size="sm">
-                    <span className="flex items-center gap-2">Consultar <ArrowRight /></span>
-                  </TextureButton>
-                </Link>
+                <div className="mt-6">
+                  <BtnDark href="/contacto">
+                    Consultar <ArrowRight />
+                  </BtnDark>
+                </div>
               </div>
 
               {/* Right */}
@@ -178,13 +177,9 @@ export default function Servicios() {
         <h2 className="font-serif text-[2.2rem] md:text-[2.8rem] font-light text-white leading-[1.1] tracking-[-0.02em]">
           ¿No sabés por dónde <em className="italic text-gold">empezar</em>?
         </h2>
-        <Link href="/contacto" className="shrink-0">
-          <TextureButton variant="minimal" size="lg" className="w-auto">
-            <span className="flex items-center gap-2 px-4 text-cream">
-              Solicitar diagnóstico inicial <ArrowRight />
-            </span>
-          </TextureButton>
-        </Link>
+        <BtnLight href="/contacto" className="shrink-0">
+          Solicitar diagnóstico inicial <ArrowRight />
+        </BtnLight>
       </div>
     </>
   )

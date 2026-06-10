@@ -1,9 +1,8 @@
-import Link from "next/link"
 import { TextureCard, TextureCardContent } from "@/components/ui/texture-card"
-import { TextureButton } from "@/components/ui/texture-button"
+import { BtnLight } from "@/components/Btn"
 
 const ArrowRight = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
   </svg>
 )
@@ -110,10 +109,10 @@ export default function Nosotros() {
               Lo que nos <em className="italic">define</em>
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-5 items-stretch">
             {values.map((v) => (
-              <TextureCard key={v.name}>
-                <TextureCardContent className="p-8 flex gap-5">
+              <TextureCard key={v.name} className="h-full">
+                <TextureCardContent className="p-8 flex gap-5 h-full">
                   <div className="text-gold shrink-0 mt-1">{v.icon}</div>
                   <div>
                     <h3 className="font-serif text-[1.15rem] font-light text-brown mb-3">{v.name}</h3>
@@ -143,18 +142,18 @@ export default function Nosotros() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-5 items-stretch">
             {team.map((member) => (
-              <TextureCard key={member.initials} className="group hover:-translate-y-1 transition-transform duration-300">
-                <TextureCardContent className="p-6">
-                  <div className="w-12 h-12 rounded-full bg-brown flex items-center justify-center mb-5">
+              <TextureCard key={member.initials} className="h-full hover:-translate-y-1 transition-transform duration-300">
+                <TextureCardContent className="p-6 flex flex-col h-full">
+                  <div className="w-12 h-12 rounded-full bg-brown flex items-center justify-center mb-5 shrink-0">
                     <span className="font-sans text-[0.72rem] font-semibold tracking-[0.1em] text-sand">
                       {member.initials}
                     </span>
                   </div>
                   <div className="font-serif text-[1.05rem] font-light text-brown mb-1">{member.name}</div>
                   <div className="font-sans text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-gold mb-4">{member.role}</div>
-                  <p className="text-[0.82rem] text-brown-light leading-relaxed font-light">{member.bio}</p>
+                  <p className="text-[0.82rem] text-brown-light leading-relaxed font-light flex-1">{member.bio}</p>
                 </TextureCardContent>
               </TextureCard>
             ))}
@@ -167,13 +166,9 @@ export default function Nosotros() {
         <h2 className="font-serif text-[2.2rem] md:text-[2.8rem] font-light text-white leading-[1.1] tracking-[-0.02em]">
           Conocé nuestros <em className="italic text-gold">servicios</em> en detalle
         </h2>
-        <Link href="/servicios" className="shrink-0">
-          <TextureButton variant="minimal" size="lg" className="w-auto">
-            <span className="flex items-center gap-2 px-4 text-cream">
-              Ver servicios <ArrowRight />
-            </span>
-          </TextureButton>
-        </Link>
+        <BtnLight href="/servicios" className="shrink-0">
+          Ver servicios <ArrowRight />
+        </BtnLight>
       </div>
     </>
   )
