@@ -3,1535 +3,322 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConFoodToria – Consultoría Gastronómica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --beige-50:  #FDFAF5;
-      --beige-100: #F5EDD8;
-      --beige-200: #EDD9B3;
-      --beige-300: #D9BC8C;
-      --beige-400: #C9A46A;
-      --beige-500: #B8894A;
-      --gold:      #C9A84C;
-      --gold-dark: #9D7E34;
-      --brown:     #4A2E0E;
-      --brown-mid: #7A4E28;
-      --cream:     #FEFCF7;
-      --white:     #FFFFFF;
-      --text-dark: #2C1A06;
-      --text-mid:  #5C3D1E;
-      --text-light: #9B7B54;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* ─── NAVBAR ─────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: all .4s ease;
-    }
-    nav.scrolled {
-      background: rgba(253, 250, 245, 0.92);
-      backdrop-filter: blur(20px);
-      padding: 14px 60px;
-      border-bottom: 1px solid var(--beige-200);
-      box-shadow: 0 4px 30px rgba(74,46,14,.06);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: .02em;
-      transition: color .4s;
-      text-decoration: none;
-    }
-    nav.scrolled .nav-logo { color: var(--brown); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      font-size: .85rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.85);
-      transition: color .3s;
-    }
-    nav.scrolled .nav-links a { color: var(--text-mid); }
-    .nav-links a:hover, nav.scrolled .nav-links a:hover { color: var(--gold); }
-    .nav-cta {
-      background: var(--gold);
-      color: var(--white) !important;
-      padding: 10px 24px;
-      border-radius: 50px;
-      font-weight: 500 !important;
-      transition: background .3s, transform .2s !important;
-    }
-    .nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 2px; background: var(--white); transition: .3s; border-radius: 2px; }
-    nav.scrolled .hamburger span { background: var(--brown); }
-
-    /* ─── HERO ───────────────────────────────────── */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(145deg, #3D1F05 0%, #6B3A1A 35%, #A06030 60%, #C9A84C 100%);
-      position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-bg-mesh {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(201,168,76,.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(253,250,245,.08) 0%, transparent 60%);
-    }
-    .hero-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .shape {
-      position: absolute;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      opacity: .12;
-      animation: morphFloat 8s ease-in-out infinite;
-    }
-    .shape-1 {
-      width: 500px; height: 500px;
-      background: var(--beige-200);
-      top: -100px; right: -100px;
-      animation-delay: 0s;
-    }
-    .shape-2 {
-      width: 300px; height: 300px;
-      background: var(--gold);
-      bottom: 0; left: -80px;
-      animation-delay: -3s;
-      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    }
-    .shape-3 {
-      width: 200px; height: 200px;
-      background: var(--beige-100);
-      top: 40%; left: 60%;
-      animation-delay: -5s;
-      border-radius: 40% 60% 60% 40% / 40% 60% 40% 60%;
-    }
-    @keyframes morphFloat {
-      0%, 100% { transform: translate(0,0) scale(1) rotate(0deg); border-radius: 30% 70% 70% 30%/30% 30% 70% 70%; }
-      33%       { transform: translate(20px,-15px) scale(1.05) rotate(3deg); border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-      66%       { transform: translate(-10px,10px) scale(.97) rotate(-2deg); border-radius: 40% 60% 60% 40%/40% 60% 40% 60%; }
-    }
-
-    /* floating 3D cubes */
-    .cube-wrap { position: absolute; inset: 0; pointer-events: none; }
-    .cube {
-      position: absolute;
-      width: 60px; height: 60px;
-      transform-style: preserve-3d;
-      animation: cubeRotate 12s linear infinite;
-      opacity: .15;
-    }
-    .cube-face {
-      position: absolute;
-      width: 100%; height: 100%;
-      border: 1px solid var(--beige-200);
-      background: rgba(253,250,245,.04);
-    }
-    .front  { transform: translateZ(30px); }
-    .back   { transform: rotateY(180deg) translateZ(30px); }
-    .left   { transform: rotateY(-90deg) translateZ(30px); }
-    .right  { transform: rotateY(90deg) translateZ(30px); }
-    .top    { transform: rotateX(90deg) translateZ(30px); }
-    .bottom { transform: rotateX(-90deg) translateZ(30px); }
-    @keyframes cubeRotate { to { transform: rotateX(360deg) rotateY(360deg); } }
-    .cube-1 { top: 15%; left: 10%;  animation-duration: 14s; }
-    .cube-2 { top: 70%; right: 8%;  animation-duration: 11s; animation-direction: reverse; }
-    .cube-3 { top: 45%; left: 80%; animation-duration: 16s; animation-delay: -4s; }
-
-    /* particles canvas */
-    #particles-canvas { position: absolute; inset: 0; }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      text-align: center;
-      padding: 0 24px;
-      max-width: 900px;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(201,168,76,.15);
-      border: 1px solid rgba(201,168,76,.3);
-      padding: 6px 20px;
-      border-radius: 50px;
-      margin-bottom: 28px;
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--white);
-      margin-bottom: 24px;
-      letter-spacing: -.01em;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--beige-200);
-    }
-    .hero-title .accent {
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--beige-200) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,.7);
-      line-height: 1.7;
-      max-width: 560px;
-      margin: 0 auto 44px;
-      font-weight: 300;
-    }
-    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--white);
-      padding: 16px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: .9rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      transition: all .3s;
-      box-shadow: 0 8px 30px rgba(201,168,76,.4);
-    }
-    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,.5); }
-    .btn-outline {
-      border: 1.5px solid rgba(255,255,255,.4);
-      color: var(--white);
-      padding: 16px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: .9rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      transition: all .3s;
-      backdrop-filter: blur(10px);
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .hero-scroll-indicator {
-      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: rgba(255,255,255,.5); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px; height: 50px;
-      background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
-      animation: scrollBlink 2s ease-in-out infinite;
-    }
-    @keyframes scrollBlink { 0%,100%{opacity:.5;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
-
-    /* ─── SECTION COMMONS ─────────────────────────── */
-    section { padding: 120px 60px; }
-    .section-tag {
-      display: inline-block;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 4vw, 3.8rem);
-      font-weight: 400;
-      line-height: 1.15;
-      color: var(--brown);
-      margin-bottom: 20px;
-    }
-    .section-title em { font-style: italic; color: var(--gold-dark); }
-    .section-lead {
-      font-size: 1.05rem;
-      color: var(--text-mid);
-      line-height: 1.8;
-      max-width: 560px;
-      font-weight: 300;
-    }
-    .container { max-width: 1280px; margin: 0 auto; }
-
-    /* reveal animation */
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .7s ease, transform .7s ease; }
-    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
-
-    /* ─── STATS STRIP ─────────────────────────────── */
-    #stats {
-      background: var(--brown);
-      padding: 60px;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .stat-item { text-align: center; }
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      font-weight: 600;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .stat-label { font-size: .8rem; color: var(--beige-200); letter-spacing: .08em; text-transform: uppercase; font-weight: 400; }
-
-    /* ─── ABOUT ───────────────────────────────────── */
-    #about { background: var(--cream); }
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .about-visual {
-      position: relative;
-    }
-    .about-card-3d {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: linear-gradient(145deg, var(--beige-100) 0%, var(--beige-200) 100%);
-      border-radius: 24px;
-      position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
-      transition: transform .5s ease;
-      box-shadow: 0 30px 80px rgba(74,46,14,.2);
-    }
-    .about-card-3d:hover { transform: rotateY(-8deg) rotateX(4deg); }
-    .about-card-pattern {
-      position: absolute; inset: 0;
-      background-image: radial-gradient(circle, var(--beige-300) 1.5px, transparent 1.5px);
-      background-size: 28px 28px;
-      opacity: .4;
-    }
-    .about-card-content {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      background: linear-gradient(to top, rgba(74,46,14,.7) 0%, transparent 60%);
-    }
-    .about-card-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.4;
-      font-style: italic;
-    }
-    .about-card-cite {
-      margin-top: 12px;
-      font-size: .8rem;
-      color: var(--gold);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .about-badge {
-      position: absolute;
-      top: -20px; right: -20px;
-      width: 120px; height: 120px;
-      background: var(--gold);
-      border-radius: 50%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      box-shadow: 0 10px 40px rgba(201,168,76,.4);
-      z-index: 2;
-    }
-    .about-badge-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1;
-    }
-    .about-badge-text { font-size: .6rem; color: rgba(255,255,255,.8); letter-spacing: .08em; text-transform: uppercase; text-align: center; line-height: 1.3; }
-
-    .about-text { display: flex; flex-direction: column; justify-content: center; }
-    .about-highlight-box {
-      background: var(--beige-100);
-      border-left: 3px solid var(--gold);
-      padding: 20px 24px;
-      border-radius: 0 12px 12px 0;
-      margin: 28px 0;
-    }
-    .about-highlight-box p { font-size: .95rem; color: var(--text-mid); line-height: 1.7; font-style: italic; }
-    .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
-    .pillar {
-      background: var(--white);
-      border: 1px solid var(--beige-200);
-      border-radius: 12px;
-      padding: 18px;
-      transition: box-shadow .3s, transform .3s;
-    }
-    .pillar:hover { box-shadow: 0 8px 30px rgba(74,46,14,.08); transform: translateY(-2px); }
-    .pillar-icon { font-size: 1.4rem; margin-bottom: 8px; }
-    .pillar-title { font-size: .85rem; font-weight: 600; color: var(--brown); margin-bottom: 4px; }
-    .pillar-desc { font-size: .78rem; color: var(--text-light); line-height: 1.5; }
-
-    /* ─── SERVICES ────────────────────────────────── */
-    #services { background: var(--beige-50); }
-    .services-header {
-      max-width: 1200px; margin: 0 auto 70px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end;
-    }
-    .services-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .service-card {
-      background: var(--white);
-      border: 1px solid var(--beige-200);
-      border-radius: 20px;
-      padding: 36px;
-      position: relative;
-      overflow: hidden;
-      transition: all .4s cubic-bezier(.175,.885,.32,1.275);
-      cursor: default;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(145deg, var(--gold) 0%, var(--brown) 100%);
-      opacity: 0;
-      transition: opacity .4s;
-    }
-    .service-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 30px 70px rgba(74,46,14,.15); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card > * { position: relative; z-index: 1; }
-    .service-card:hover .service-num,
-    .service-card:hover .service-title,
-    .service-card:hover .service-desc,
-    .service-card:hover .service-price { color: var(--white) !important; }
-    .service-card:hover .service-price-wrap { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.1); }
-
-    .service-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem; font-weight: 300;
-      color: var(--beige-200);
-      line-height: 1;
-      margin-bottom: 20px;
-      transition: color .4s;
-    }
-    .service-title {
-      font-size: 1.1rem; font-weight: 600;
-      color: var(--brown);
-      margin-bottom: 14px;
-      line-height: 1.3;
-      transition: color .4s;
-    }
-    .service-desc {
-      font-size: .85rem; color: var(--text-mid);
-      line-height: 1.7; margin-bottom: 24px;
-      transition: color .4s;
-    }
-    .service-price-wrap {
-      border: 1px solid var(--beige-200);
-      background: var(--beige-50);
-      border-radius: 8px;
-      padding: 10px 16px;
-      transition: all .4s;
-    }
-    .service-price-label { font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-light); margin-bottom: 2px; }
-    .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--gold-dark); transition: color .4s; }
-
-    /* featured service */
-    .service-card.featured {
-      background: linear-gradient(145deg, var(--brown) 0%, #8B4A1A 100%);
-      border-color: transparent;
-      grid-row: span 1;
-    }
-    .service-card.featured::before { display: none; }
-    .service-card.featured .service-num { color: rgba(201,168,76,.4); }
-    .service-card.featured .service-title { color: var(--white); }
-    .service-card.featured .service-desc { color: rgba(255,255,255,.7); }
-    .service-card.featured .service-price-wrap { border-color: rgba(201,168,76,.3); background: rgba(201,168,76,.1); }
-    .service-card.featured .service-price { color: var(--gold); }
-    .service-card.featured .service-price-label { color: rgba(255,255,255,.5); }
-    .featured-tag {
-      position: absolute; top: 20px; right: 20px;
-      background: var(--gold); color: var(--white);
-      font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 50px;
-    }
-
-    /* ─── METHODOLOGY ─────────────────────────────── */
-    #methodology {
-      background: var(--brown);
-      position: relative; overflow: hidden;
-    }
-    .method-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,.08) 0%, transparent 70%);
-    }
-    .method-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-    .method-header { text-align: center; margin-bottom: 80px; }
-    .method-header .section-title { color: var(--white); }
-    .method-header .section-lead { color: rgba(255,255,255,.6); margin: 0 auto; }
-
-    .method-steps {
-      display: flex;
-      gap: 0;
-      position: relative;
-    }
-    .method-steps::before {
-      content: '';
-      position: absolute;
-      top: 55px;
-      left: 60px; right: 60px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(201,168,76,.4), transparent);
-    }
-    .method-step {
-      flex: 1;
-      text-align: center;
-      padding: 0 20px;
-      transition: transform .3s;
-    }
-    .method-step:hover { transform: translateY(-6px); }
-    .step-circle {
-      width: 110px; height: 110px;
-      background: rgba(201,168,76,.1);
-      border: 1.5px solid rgba(201,168,76,.3);
-      border-radius: 50%;
-      margin: 0 auto 24px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all .3s;
-      position: relative;
-    }
-    .method-step:hover .step-circle {
-      background: var(--gold);
-      border-color: var(--gold);
-      box-shadow: 0 0 40px rgba(201,168,76,.4);
-    }
-    .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 600;
-      color: var(--gold);
-      transition: color .3s;
-    }
-    .method-step:hover .step-num { color: var(--white); }
-    .step-title {
-      font-size: .9rem; font-weight: 600;
-      color: var(--white);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-    .step-desc { font-size: .8rem; color: rgba(255,255,255,.5); line-height: 1.6; }
-    .step-arrow {
-      position: absolute;
-      top: 50%; right: -8px;
-      transform: translateY(-50%);
-      color: rgba(201,168,76,.3);
-      font-size: 1rem;
-    }
-
-    /* ─── CASE STUDY ──────────────────────────────── */
-    #case-study { background: var(--cream); }
-    .case-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
-    }
-    .case-visual {
-      position: relative;
-    }
-    .case-main-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #5C3317 0%, #9A6030 50%, #C9984A 100%);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 40px 90px rgba(74,46,14,.25);
-    }
-    .case-main-img-pattern {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(45deg, rgba(255,255,255,.03) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(255,255,255,.03) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(255,255,255,.03) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.03) 75%);
-      background-size: 20px 20px;
-    }
-    .case-main-overlay {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      background: linear-gradient(to top, rgba(40,20,5,.8) 0%, transparent 60%);
-    }
-    .case-label {
-      font-size: .7rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-    .case-client-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--white);
-      font-weight: 400;
-    }
-    .case-metrics {
-      position: absolute;
-      top: 30px; right: -30px;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 20px 24px;
-      box-shadow: 0 20px 50px rgba(74,46,14,.15);
-      min-width: 160px;
-    }
-    .case-metric-item { margin-bottom: 16px; }
-    .case-metric-item:last-child { margin-bottom: 0; }
-    .case-metric-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 600;
-      color: var(--gold-dark);
-      line-height: 1;
-    }
-    .case-metric-key { font-size: .7rem; color: var(--text-light); letter-spacing: .06em; text-transform: uppercase; }
-
-    .case-text .section-tag { margin-bottom: 8px; }
-    .case-text .section-title { margin-bottom: 16px; }
-    .case-challenge {
-      background: var(--beige-100);
-      border-radius: 16px;
-      padding: 24px;
-      margin: 28px 0;
-    }
-    .challenge-title { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 12px; }
-    .challenge-list { list-style: none; }
-    .challenge-list li {
-      font-size: .88rem; color: var(--text-mid);
-      padding: 6px 0;
-      border-bottom: 1px solid var(--beige-200);
-      display: flex; align-items: flex-start; gap: 10px;
-      line-height: 1.5;
-    }
-    .challenge-list li:last-child { border-bottom: none; }
-    .challenge-list li::before { content: '→'; color: var(--gold); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
-    .case-results { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
-    .result-item {
-      background: var(--white);
-      border: 1px solid var(--beige-200);
-      border-radius: 10px;
-      padding: 14px 16px;
-    }
-    .result-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 600;
-      color: var(--gold-dark);
-    }
-    .result-desc { font-size: .75rem; color: var(--text-light); line-height: 1.4; }
-
-    /* ─── TEAM ────────────────────────────────────── */
-    #team { background: var(--beige-50); }
-    .team-header { max-width: 1200px; margin: 0 auto 60px; text-align: center; }
-    .team-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .team-card {
-      background: var(--white);
-      border: 1px solid var(--beige-200);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all .4s;
-    }
-    .team-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(74,46,14,.12); }
-    .team-avatar {
-      height: 200px;
-      position: relative;
-      overflow: hidden;
-    }
-    .avatar-bg {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .avatar-initials {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      font-weight: 300;
-      color: rgba(255,255,255,.8);
-      letter-spacing: -.02em;
-    }
-    .team-info { padding: 24px; }
-    .team-name { font-size: 1rem; font-weight: 600; color: var(--brown); margin-bottom: 4px; }
-    .team-role {
-      font-size: .75rem;
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: 12px;
-    }
-    .team-desc { font-size: .82rem; color: var(--text-mid); line-height: 1.6; }
-    .team-divider { width: 30px; height: 2px; background: var(--gold); margin: 12px 0; }
-
-    /* ─── CONTACT ─────────────────────────────────── */
-    #contact {
-      background: linear-gradient(160deg, #3D1F05 0%, #6B3A1A 60%, #9A5A2A 100%);
-      position: relative; overflow: hidden;
-    }
-    .contact-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,168,76,.1) 0%, transparent 60%);
-    }
-    .contact-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-      align-items: center; position: relative; z-index: 1;
-    }
-    .contact-text .section-title { color: var(--white); }
-    .contact-text .section-lead { color: rgba(255,255,255,.6); }
-    .contact-items { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
-    .contact-item { display: flex; align-items: flex-start; gap: 16px; }
-    .contact-icon {
-      width: 44px; height: 44px;
-      background: rgba(201,168,76,.15);
-      border: 1px solid rgba(201,168,76,.3);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .contact-detail-label { font-size: .7rem; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 3px; }
-    .contact-detail-val { font-size: .9rem; color: rgba(255,255,255,.8); }
-
-    .contact-form-wrap {
-      background: rgba(253,250,245,.06);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(201,168,76,.2);
-      border-radius: 24px;
-      padding: 40px;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label {
-      display: block;
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-      margin-bottom: 6px;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(201,168,76,.2);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: .9rem;
-      color: var(--white);
-      font-family: inherit;
-      outline: none;
-      transition: border-color .3s, background .3s;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,.3); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--gold); background: rgba(201,168,76,.06); }
-    .form-group select option { background: var(--brown); color: var(--white); }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-    .form-submit {
-      width: 100%;
-      background: var(--gold);
-      color: var(--white);
-      border: none;
-      padding: 16px;
-      border-radius: 10px;
-      font-size: .9rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background .3s, transform .2s;
-      font-family: inherit;
-      margin-top: 8px;
-    }
-    .form-submit:hover { background: var(--gold-dark); transform: translateY(-1px); }
-
-    /* ─── FOOTER ──────────────────────────────────── */
-    footer {
-      background: var(--text-dark);
-      padding: 50px 60px 30px;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .footer-brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 600;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-    .footer-brand-desc { font-size: .85rem; color: rgba(255,255,255,.4); line-height: 1.7; max-width: 280px; }
-    .footer-col-title { font-size: .7rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a { text-decoration: none; font-size: .85rem; color: rgba(255,255,255,.4); transition: color .3s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-bottom {
-      max-width: 1200px; margin: 24px auto 0;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-copy { font-size: .78rem; color: rgba(255,255,255,.25); }
-    .footer-made { font-size: .78rem; color: rgba(255,255,255,.25); }
-
-    /* ─── RESPONSIVE ──────────────────────────────── */
-    @media (max-width: 1024px) {
-      section { padding: 80px 40px; }
-      .about-inner { grid-template-columns: 1fr; gap: 60px; }
-      .case-inner  { grid-template-columns: 1fr; gap: 60px; }
-      .contact-inner { grid-template-columns: 1fr; gap: 50px; }
-      .footer-inner  { grid-template-columns: 1fr 1fr; }
-      .stats-grid    { grid-template-columns: repeat(2, 1fr); }
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .team-grid     { grid-template-columns: repeat(2, 1fr); }
-      .services-header { grid-template-columns: 1fr; gap: 20px; }
-      .method-steps { flex-wrap: wrap; }
-      .method-step  { flex: 0 0 50%; }
-    }
-    @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      nav.scrolled { padding: 12px 24px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      section { padding: 70px 24px; }
-      .stats-grid   { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      #stats        { padding: 50px 24px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .team-grid     { grid-template-columns: 1fr; }
-      .form-row      { grid-template-columns: 1fr; }
-      .about-pillars { grid-template-columns: 1fr; }
-      .hero-title    { font-size: 3rem; }
-      .footer-inner  { grid-template-columns: 1fr; gap: 30px; }
-      .case-metrics  { position: relative; top: auto; right: auto; margin-top: 20px; }
-      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-    }
-  </style>
+  <title>ConFoodToria — Consultoría Gastronómica</title>
+  <meta name="description" content="Consultoría especializada en PyMEs gastronómicas y turístico-rurales de Buenos Aires provincia. Metodología Harvard." />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- ─── NAVBAR ─────────────────────────────────────── -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">ConFoodToria</a>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">Con<em>Food</em>Toria</a>
   <ul class="nav-links">
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#services">Servicios</a></li>
-    <li><a href="#methodology">Metodología</a></li>
-    <li><a href="#case-study">Casos</a></li>
-    <li><a href="#team">Equipo</a></li>
-    <li><a href="#contact" class="nav-cta">Contacto</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="casos.html">Casos</a></li>
+    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
   </ul>
-  <div class="hamburger" id="hamburger">
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<!-- ─── HERO ───────────────────────────────────────── -->
-<section id="hero">
-  <div class="hero-bg-mesh"></div>
-  <div class="hero-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
-  <div class="cube-wrap">
-    <div class="cube cube-1">
-      <div class="cube-face front"></div><div class="cube-face back"></div>
-      <div class="cube-face left"></div><div class="cube-face right"></div>
-      <div class="cube-face top"></div><div class="cube-face bottom"></div>
-    </div>
-    <div class="cube cube-2">
-      <div class="cube-face front"></div><div class="cube-face back"></div>
-      <div class="cube-face left"></div><div class="cube-face right"></div>
-      <div class="cube-face top"></div><div class="cube-face bottom"></div>
-    </div>
-    <div class="cube cube-3">
-      <div class="cube-face front"></div><div class="cube-face back"></div>
-      <div class="cube-face left"></div><div class="cube-face right"></div>
-      <div class="cube-face top"></div><div class="cube-face bottom"></div>
-    </div>
-  </div>
-  <canvas id="particles-canvas"></canvas>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow reveal">Consultoría Gastronómica de Alto Impacto</div>
-    <h1 class="hero-title reveal">
-      Transformamos<br><em>restaurantes</em> en<br>
-      <span class="accent">negocios rentables</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Consultoría Gastronómica · Buenos Aires</div>
+    <h1 class="hero-heading">
+      Gestión<br>
+      <em>profesional</em><br>
+      para negocios<br>
+      gastronómicos
     </h1>
-    <p class="hero-sub reveal">
-      Especialistas en consultoría para PyMEs gastronómicas y establecimientos turístico-rurales de la provincia de Buenos Aires. Metodología Harvard, resultados medibles.
-    </p>
-    <div class="hero-btns reveal">
-      <a href="#services" class="btn-primary">Ver servicios</a>
-      <a href="#case-study" class="btn-outline">Caso Estancia Rodríguez</a>
+    <p class="hero-sub">Metodología Harvard · Resultados Medibles</p>
+    <div class="hero-actions">
+      <a href="servicios.html" class="btn btn-dark">
+        Nuestros servicios
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+      </a>
+      <a href="casos.html" class="btn btn-outline">Ver caso de éxito</a>
     </div>
   </div>
-
-  <div class="hero-scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+  <div class="hero-canvas-wrap">
+    <canvas id="hero-3d"></canvas>
   </div>
 </section>
 
-<!-- ─── STATS ──────────────────────────────────────── -->
-<div id="stats">
-  <div class="stats-grid">
-    <div class="stat-item reveal">
-      <div class="stat-number" data-target="63">0</div>
-      <div class="stat-label">Establecimientos en zona de influencia</div>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Diagnóstico <b>·</b></span>
+    <span class="ticker-item">Diseño de soluciones <b>·</b></span>
+    <span class="ticker-item">Implementación <b>·</b></span>
+    <span class="ticker-item">Seguimiento <b>·</b></span>
+    <span class="ticker-item">Resultados medibles <b>·</b></span>
+    <span class="ticker-item">Metodología Harvard <b>·</b></span>
+    <span class="ticker-item">Buenos Aires Provincia <b>·</b></span>
+    <span class="ticker-item">Ruta 5 <b>·</b></span>
+    <span class="ticker-item">Diagnóstico <b>·</b></span>
+    <span class="ticker-item">Diseño de soluciones <b>·</b></span>
+    <span class="ticker-item">Implementación <b>·</b></span>
+    <span class="ticker-item">Seguimiento <b>·</b></span>
+    <span class="ticker-item">Resultados medibles <b>·</b></span>
+    <span class="ticker-item">Metodología Harvard <b>·</b></span>
+    <span class="ticker-item">Buenos Aires Provincia <b>·</b></span>
+    <span class="ticker-item">Ruta 5 <b>·</b></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+      <div class="fade-up">
+        <div class="sec-tag">Quiénes somos</div>
+        <h2 class="sec-title">La única consultora <em>especializada</em> en gastronomía PyME de la región</h2>
+      </div>
+      <div class="fade-up" style="transition-delay:.15s; padding-top: 16px;">
+        <p class="sec-body" style="margin-bottom:24px;">
+          ConFoodToria opera en el corredor de la Ruta Nacional 5 — Mercedes, Luján, Carlos Keen, Tomás Jofré, San Antonio de Areco. Nos especializamos en negocios gastronómicos y turístico-rurales con modelos probados, pero con gestión informal que limita su potencial de crecimiento.
+        </p>
+        <p class="sec-body" style="margin-bottom:32px;">
+          No somos una consultora generalista. Conocemos de cerca la dinámica operativa del sector porque venimos de ahí. Eso nos da credibilidad, velocidad diagnóstica y propuestas que realmente se pueden implementar.
+        </p>
+        <a href="nosotros.html" class="btn btn-ghost">
+          Conocer el equipo
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="stat-item reveal" style="transition-delay:.1s">
-      <div class="stat-number" data-target="6">0</div>
-      <div class="stat-label">Consultores universitarios especializados</div>
+
+    <div class="stats-row fade-up" style="transition-delay:.25s;">
+      <div class="stat-item" style="padding-right:32px;">
+        <div class="stat-num"><span data-count="63">0</span></div>
+        <div class="stat-label">Establecimientos en zona de influencia</div>
+      </div>
+      <div class="stat-item" style="padding:32px 32px 32px;">
+        <div class="stat-num"><span data-count="6">0</span></div>
+        <div class="stat-label">Consultores universitarios especializados</div>
+      </div>
+      <div class="stat-item" style="padding:32px 32px 32px;">
+        <div class="stat-num"><span data-count="5">0</span></div>
+        <div class="stat-label">Fases metodología Harvard</div>
+      </div>
+      <div class="stat-item" style="padding:32px 0 32px 32px;">
+        <div class="stat-num"><em>+<span data-count="12">0</span>%</em></div>
+        <div class="stat-label">Crecimiento anual del sector</div>
+      </div>
     </div>
-    <div class="stat-item reveal" style="transition-delay:.2s">
-      <div class="stat-number" data-target="5">0</div>
-      <div class="stat-label">Fases metodología Harvard</div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SERVICES PREVIEW -->
+<section>
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:0; flex-wrap:wrap; gap:20px;">
+      <div class="fade-up">
+        <div class="sec-tag">Portfolio</div>
+        <h2 class="sec-title">Servicios diseñados<br>para <em>cada etapa</em></h2>
+      </div>
+      <a href="servicios.html" class="btn btn-outline fade-up" style="transition-delay:.1s; align-self:flex-end;">
+        Ver todos los servicios
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+      </a>
     </div>
-    <div class="stat-item reveal" style="transition-delay:.3s">
-      <div class="stat-number" data-prefix="+" data-target="12">0</div>
-      <div class="stat-label">% crecimiento anual del sector</div>
+
+    <div class="services-grid fade-in" style="transition-delay:.2s;">
+      <div class="service-card" data-tilt>
+        <div class="service-num">01</div>
+        <h3 class="service-name">Rentabilidad y Control <em>Financiero</em></h3>
+        <p class="service-desc">Analizamos costos, identificamos fugas de rentabilidad y diseñamos herramientas de control adaptadas al negocio. El cliente pasa de gestión reactiva a planificación ordenada.</p>
+        <div class="service-price">Desde <strong>$7.200.000</strong></div>
+      </div>
+      <div class="service-card" data-tilt>
+        <div class="service-num">02</div>
+        <h3 class="service-name">Plan de Dirección <em>Estratégica</em></h3>
+        <p class="service-desc">Diseñamos el plan estratégico integral del negocio: objetivos, posicionamiento, oportunidades de crecimiento y hoja de ruta ejecutable con seguimiento mensual.</p>
+        <div class="service-price">Desde <strong>$10.000.000</strong> + retainer</div>
+      </div>
+      <div class="service-card" data-tilt>
+        <div class="service-num">03</div>
+        <h3 class="service-name">Organización y <em>Flujos de Trabajo</em></h3>
+        <p class="service-desc">Relevamos procesos internos, identificamos los puntos de quiebre operativo y diseñamos protocolos concretos para cada área del establecimiento.</p>
+        <div class="service-price">Desde <strong>$8.800.000</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CASE STUDY PREVIEW -->
+<div class="case-block fade-in">
+  <div class="case-block-img img-frame">
+    <img
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80"
+      alt="Estancia Rodríguez — caso de éxito ConFoodToria"
+      loading="lazy"
+    />
+  </div>
+  <div class="case-block-text">
+    <div class="sec-tag">Caso testigo</div>
+    <h2 class="sec-title">Estancia<br><em>Rodríguez</em></h2>
+    <p class="sec-body" style="margin-top:20px;">
+      Establecimiento turístico-gastronómico en la Ruta 5. Alto potencial, gestión completamente informal. Nuestra intervención reorganizó operaciones, implementó control financiero y capacitó al equipo en 60 días.
+    </p>
+    <div class="case-metrics">
+      <div class="case-metric">
+        <div class="case-metric-val"><em>+35%</em></div>
+        <div class="case-metric-key">Rentabilidad operativa</div>
+      </div>
+      <div class="case-metric">
+        <div class="case-metric-val">60</div>
+        <div class="case-metric-key">Días de intervención</div>
+      </div>
+      <div class="case-metric">
+        <div class="case-metric-val">5</div>
+        <div class="case-metric-key">Áreas reorganizadas</div>
+      </div>
+    </div>
+    <div style="margin-top:40px;">
+      <a href="casos.html" class="btn btn-light">
+        Ver caso completo
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+      </a>
     </div>
   </div>
 </div>
 
-<!-- ─── ABOUT ──────────────────────────────────────── -->
-<section id="about">
-  <div class="about-inner container">
-    <div class="about-visual reveal-left">
-      <div class="about-card-3d">
-        <div class="about-card-pattern"></div>
-        <div class="about-card-content">
-          <p class="about-card-quote">"No existe oferta visible de consultoría gastronómica para PyMEs rurales en la zona. Esa es nuestra ventaja."</p>
-          <p class="about-card-cite">— Equipo ConFoodToria</p>
-        </div>
-      </div>
-      <div class="about-badge">
-        <div class="about-badge-num">SRL</div>
-        <div class="about-badge-text">Sociedad formalmente constituida</div>
-      </div>
-    </div>
-
-    <div class="about-text reveal-right">
-      <span class="section-tag">Quiénes somos</span>
-      <h2 class="section-title">La única consultora <em>especializada</em> en gastronomía PyME</h2>
-      <p class="section-lead">
-        ConFoodToria opera en el corredor de la Ruta Nacional 5 y zonas aledañas — Mercedes, Luján, Carlos Keen, Tomás Jofré, San Antonio de Areco — donde concentramos nuestra experiencia y construimos relaciones de largo plazo.
-      </p>
-      <div class="about-highlight-box">
-        <p>
-          Nos especializamos en negocios gastronómicos con modelos probados y rentables, pero con gestión informal. Nuestro trabajo convierte esa informalidad en estructura, sin perder la identidad del negocio.
-        </p>
-      </div>
-      <div class="about-pillars">
-        <div class="pillar">
-          <div class="pillar-icon">🎯</div>
-          <div class="pillar-title">Especialización exclusiva</div>
-          <div class="pillar-desc">Solo gastronomía y turismo rural. Sin dilución de foco.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">📍</div>
-          <div class="pillar-title">Proximidad real</div>
-          <div class="pillar-desc">Trabajo presencial en el establecimiento, no remoto.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">📊</div>
-          <div class="pillar-title">Resultados medibles</div>
-          <div class="pillar-desc">Cada intervención genera métricas concretas de mejora.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🎓</div>
-          <div class="pillar-title">Metodología Harvard</div>
-          <div class="pillar-desc">5 fases del proceso de consultoría aplicadas al rubro.</div>
-        </div>
-      </div>
-    </div>
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">¿Tu negocio tiene potencial sin <em>explotar</em>?</h2>
+    <a href="contacto.html" class="btn btn-light">
+      Solicitar diagnóstico
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+    </a>
   </div>
-</section>
+</div>
 
-<!-- ─── SERVICES ───────────────────────────────────── -->
-<section id="services">
-  <div class="services-header reveal">
-    <div>
-      <span class="section-tag">Portfolio de servicios</span>
-      <h2 class="section-title">Soluciones para cada etapa del <em>crecimiento</em></h2>
-    </div>
-    <p class="section-lead">
-      Cada intervención se estructura en tres etapas — Diagnóstico, Diseño de soluciones e Implementación — siguiendo la metodología Harvard.
-    </p>
-  </div>
-
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-num">01</div>
-      <h3 class="service-title">Rentabilidad y Control Financiero</h3>
-      <p class="service-desc">Analizamos la estructura de costos, identificamos fugas de rentabilidad y diseñamos herramientas de control financiero. El cliente pasa de gestión reactiva a planificación ordenada, con presupuestos reales y márgenes claros.</p>
-      <div class="service-price-wrap">
-        <div class="service-price-label">Precio referencial</div>
-        <div class="service-price">$7.200.000</div>
-      </div>
-    </div>
-
-    <div class="service-card featured reveal" style="transition-delay:.1s">
-      <div class="featured-tag">Más completo</div>
-      <div class="service-num">02</div>
-      <h3 class="service-title">Plan de Dirección Estratégica</h3>
-      <p class="service-desc">Diseñamos un plan estratégico integral: objetivos, posicionamiento competitivo, oportunidades de crecimiento y hoja de ruta. Acompañamos la ejecución mes a mes, midiendo resultados y ajustando el rumbo.</p>
-      <div class="service-price-wrap">
-        <div class="service-price-label">Precio referencial</div>
-        <div class="service-price">$10.000.000 + $1.500.000/mes</div>
-      </div>
-    </div>
-
-    <div class="service-card reveal" style="transition-delay:.2s">
-      <div class="service-num">03</div>
-      <h3 class="service-title">Organización y Mejora de Flujos de Trabajo</h3>
-      <p class="service-desc">Relevamos procesos internos, identificamos puntos de quiebre y diseñamos protocolos para cada área. El resultado: un equipo que sabe exactamente qué hacer, cuándo y cómo, reduciendo errores y desperdicios.</p>
-      <div class="service-price-wrap">
-        <div class="service-price-label">Precio referencial</div>
-        <div class="service-price">$8.800.000</div>
-      </div>
-    </div>
-
-    <div class="service-card reveal" style="transition-delay:.1s">
-      <div class="service-num">04</div>
-      <h3 class="service-title">Jornada de Capacitación de Personal</h3>
-      <p class="service-desc">Diseñamos y conducimos jornadas a medida para cada puesto y área. Cada jornada combina teoría aplicada al rubro con simulaciones prácticas, garantizando incorporación real de herramientas.</p>
-      <div class="service-price-wrap">
-        <div class="service-price-label">Precio referencial</div>
-        <div class="service-price">$440.000 / jornada</div>
-      </div>
-    </div>
-
-    <div class="service-card reveal" style="transition-delay:.2s">
-      <div class="service-num">05</div>
-      <h3 class="service-title">Retainer de Seguimiento Mensual</h3>
-      <p class="service-desc">Para clientes que necesitan un socio estratégico continuo. Mediante abono mensual fijo, permanecemos disponibles para resolver consultas, monitorear KPIs y anticipar problemas antes de que escalen.</p>
-      <div class="service-price-wrap">
-        <div class="service-price-label">Precio referencial</div>
-        <div class="service-price">$600.000 – $800.000/mes</div>
-      </div>
-    </div>
-
-    <div class="service-card reveal" style="transition-delay:.3s; background: var(--beige-100); border: 1.5px dashed var(--beige-300);">
-      <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding: 20px 0;">
-        <div style="font-size:2.5rem; margin-bottom:16px; opacity:.5;">🔎</div>
-        <h3 style="font-size:1rem; font-weight:600; color:var(--brown); margin-bottom:10px;">¿No sabés por dónde empezar?</h3>
-        <p style="font-size:.85rem; color:var(--text-light); line-height:1.6; margin-bottom:20px;">Ofrecemos un diagnóstico inicial para identificar las áreas de mayor impacto en tu negocio.</p>
-        <a href="#contact" class="btn-primary" style="font-size:.8rem; padding:12px 28px;">Solicitar diagnóstico</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── METHODOLOGY ────────────────────────────────── -->
-<section id="methodology">
-  <div class="method-bg"></div>
-  <div class="method-inner">
-    <div class="method-header reveal">
-      <span class="section-tag" style="color:var(--gold);">Metodología</span>
-      <h2 class="section-title" style="color:var(--white);">Proceso Harvard de <em>5 fases</em></h2>
-      <p class="section-lead" style="color:rgba(255,255,255,.6)">Cada proyecto sigue una metodología estructurada, documentada y probada que garantiza resultados concretos en cada intervención.</p>
-    </div>
-    <div class="method-steps reveal">
-      <div class="method-step">
-        <div class="step-circle">
-          <span class="step-num">1</span>
-        </div>
-        <h3 class="step-title">Entrada</h3>
-        <p class="step-desc">Primer contacto con el cliente. Definición del problema y alcance de la intervención.</p>
-      </div>
-      <div class="method-step">
-        <div class="step-circle">
-          <span class="step-num">2</span>
-        </div>
-        <h3 class="step-title">Diagnóstico</h3>
-        <p class="step-desc">Relevamiento exhaustivo de procesos, finanzas, equipo y operaciones del establecimiento.</p>
-      </div>
-      <div class="method-step">
-        <div class="step-circle">
-          <span class="step-num">3</span>
-        </div>
-        <h3 class="step-title">Diseño</h3>
-        <p class="step-desc">Elaboración de soluciones a medida, protocolos y planes de acción priorizados por impacto.</p>
-      </div>
-      <div class="method-step">
-        <div class="step-circle">
-          <span class="step-num">4</span>
-        </div>
-        <h3 class="step-title">Implementación</h3>
-        <p class="step-desc">Acompañamiento presencial durante la puesta en marcha. Capacitación del equipo del cliente.</p>
-      </div>
-      <div class="method-step">
-        <div class="step-circle">
-          <span class="step-num">5</span>
-        </div>
-        <h3 class="step-title">Seguimiento</h3>
-        <p class="step-desc">Monitoreo post-intervención con informe final documentado y métricas de resultado.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CASE STUDY ─────────────────────────────────── -->
-<section id="case-study">
-  <div class="case-inner container">
-    <div class="case-visual reveal-left">
-      <div class="case-main-img">
-        <div class="case-main-img-pattern"></div>
-        <div class="case-main-overlay">
-          <div class="case-label">Caso de éxito</div>
-          <div class="case-client-name">Estancia Rodríguez</div>
-        </div>
-      </div>
-      <div class="case-metrics">
-        <div class="case-metric-item">
-          <div class="case-metric-val">+35%</div>
-          <div class="case-metric-key">Rentabilidad operativa</div>
-        </div>
-        <div class="case-metric-item">
-          <div class="case-metric-val">60 días</div>
-          <div class="case-metric-key">Tiempo de intervención</div>
-        </div>
-        <div class="case-metric-item">
-          <div class="case-metric-val">100%</div>
-          <div class="case-metric-key">Protocolos documentados</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-text reveal-right">
-      <span class="section-tag">Caso testigo</span>
-      <h2 class="section-title">Cómo transformamos <em>Estancia Rodríguez</em></h2>
-      <p class="section-lead">
-        Estancia Rodríguez es el primer caso de éxito documentado de ConFoodToria: un establecimiento turístico-gastronómico en la Ruta 5 que operaba con alto potencial pero gestión completamente informal.
-      </p>
-
-      <div class="case-challenge">
-        <div class="challenge-title">Diagnóstico inicial — Problemáticas detectadas</div>
-        <ul class="challenge-list">
-          <li>Descoordinación operativa entre cocina, salón y administración</li>
-          <li>Ausencia de protocolos de trabajo para cada puesto</li>
-          <li>Control financiero inexistente — sin márgenes reales por servicio</li>
-          <li>Capacitación informal del personal, alta rotación y errores recurrentes</li>
-          <li>Gestión centralizada en los dueños sin delegación estructurada</li>
-        </ul>
-      </div>
-
-      <div class="case-results">
-        <div class="result-item">
-          <div class="result-num">📋</div>
-          <div class="result-desc">Manuales de procedimientos por área elaborados</div>
-        </div>
-        <div class="result-item">
-          <div class="result-num">💰</div>
-          <div class="result-desc">Control de costos y presupuesto mensual implementado</div>
-        </div>
-        <div class="result-item">
-          <div class="result-num">👥</div>
-          <div class="result-desc">Jornadas de capacitación por rol completadas</div>
-        </div>
-        <div class="result-item">
-          <div class="result-num">📈</div>
-          <div class="result-desc">Reducción de desperdicios y tiempos muertos medida</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TEAM ───────────────────────────────────────── -->
-<section id="team">
-  <div class="team-header reveal">
-    <span class="section-tag">El equipo</span>
-    <h2 class="section-title">Seis especialistas, <em>un solo enfoque</em></h2>
-    <p class="section-lead" style="margin:0 auto">Formados en Administración de Empresas y Comercio Internacional. Cada integrante aporta una perspectiva complementaria para abordar la totalidad del negocio gastronómico.</p>
-  </div>
-
-  <div class="team-grid container">
-    <div class="team-card reveal">
-      <div class="team-avatar">
-        <div class="avatar-bg" style="background: linear-gradient(135deg,#4A2E0E,#9A6030)">
-          <div class="avatar-initials">LG</div>
-        </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Lucas García Marino</div>
-        <div class="team-role">Director General</div>
-        <div class="team-divider"></div>
-        <p class="team-desc">Conducción estratégica de la firma, representación institucional y relación con clientes de mayor jerarquía. Lidera la visión de largo plazo de ConFoodToria.</p>
-      </div>
-    </div>
-
-    <div class="team-card reveal" style="transition-delay:.1s">
-      <div class="team-avatar">
-        <div class="avatar-bg" style="background: linear-gradient(135deg,#3A5F2A,#6A9F4A)">
-          <div class="avatar-initials">JB</div>
-        </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Juan Manuel Bruno</div>
-        <div class="team-role">Director Comercial</div>
-        <div class="team-divider"></div>
-        <p class="team-desc">Prospección y captación de nuevos clientes, elaboración de propuestas comerciales y gestión de la cartera activa. Primer punto de contacto con potenciales clientes.</p>
-      </div>
-    </div>
-
-    <div class="team-card reveal" style="transition-delay:.2s">
-      <div class="team-avatar">
-        <div class="avatar-bg" style="background: linear-gradient(135deg,#2A3A5F,#4A6A9F)">
-          <div class="avatar-initials">SB</div>
-        </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Santiago Bailo</div>
-        <div class="team-role">Consultor Senior — Líder de Proyecto</div>
-        <div class="team-divider"></div>
-        <p class="team-desc">Dirección técnica de cada intervención consultora. Coordina el equipo en campo y es responsable de la entrega del informe final al cliente.</p>
-      </div>
-    </div>
-
-    <div class="team-card reveal" style="transition-delay:.1s">
-      <div class="team-avatar">
-        <div class="avatar-bg" style="background: linear-gradient(135deg,#5F2A3A,#9F4A6A)">
-          <div class="avatar-initials">SC</div>
-        </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Sofía Campagno</div>
-        <div class="team-role">Consultora de Operaciones</div>
-        <div class="team-divider"></div>
-        <p class="team-desc">Especializada en relevamiento y análisis de procesos operativos. Diseña protocolos de trabajo y soluciones de eficiencia adaptadas a cada establecimiento.</p>
-      </div>
-    </div>
-
-    <div class="team-card reveal" style="transition-delay:.2s">
-      <div class="team-avatar">
-        <div class="avatar-bg" style="background: linear-gradient(135deg,#5F3A2A,#9F6A4A)">
-          <div class="avatar-initials">AC</div>
-        </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Agostina Carunchio</div>
-        <div class="team-role">Consultora de RRHH y Capacitación</div>
-        <div class="team-divider"></div>
-        <p class="team-desc">Diagnóstico de equipos de trabajo, diseño y conducción de jornadas de capacitación. Lidera procesos de gestión del cambio organizacional en cada cliente.</p>
-      </div>
-    </div>
-
-    <div class="team-card reveal" style="transition-delay:.3s">
-      <div class="team-avatar">
-        <div class="avatar-bg" style="background: linear-gradient(135deg,#2A4A2A,#4A8A4A)">
-          <div class="avatar-initials">JS</div>
-        </div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Juan Manuel Silva</div>
-        <div class="team-role">Analista Financiero y Administrativo</div>
-        <div class="team-divider"></div>
-        <p class="team-desc">Modelado financiero de Business Cases, elaboración de presupuestos y control de gestión. Administra también las finanzas internas de la firma.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTACT ────────────────────────────────────── -->
-<section id="contact">
-  <div class="contact-bg"></div>
-  <div class="contact-inner">
-    <div class="contact-text reveal-left">
-      <span class="section-tag">Hablemos</span>
-      <h2 class="section-title">¿Tu negocio está listo para <em>dar el salto</em>?</h2>
-      <p class="section-lead">
-        Si tenés un restaurante, parrilla o establecimiento turístico-rural en Buenos Aires provincia y querés mejorar tu operación, controlá tus márgenes y profesionalizar tu equipo, podemos ayudarte.
-      </p>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div>
-            <div class="contact-detail-label">Zona de operación</div>
-            <div class="contact-detail-val">Corredor Ruta 5 — Mercedes, Luján, Carlos Keen, Tomás Jofré, San Antonio de Areco</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📱</div>
-          <div>
-            <div class="contact-detail-label">Redes sociales</div>
-            <div class="contact-detail-val">@confoodtoria en Instagram y LinkedIn</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">⏱️</div>
-          <div>
-            <div class="contact-detail-label">Modalidad de trabajo</div>
-            <div class="contact-detail-val">70% in company · 30% remoto/administrativo</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal-right">
-      <div class="contact-form-wrap">
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--white); margin-bottom:24px;">Solicitar diagnóstico inicial</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre" />
-          </div>
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="tel" placeholder="+54 11..." />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Establecimiento</label>
-          <input type="text" placeholder="Nombre de tu restaurante o local" />
-        </div>
-        <div class="form-group">
-          <label>Tipo de servicio</label>
-          <select>
-            <option value="" disabled selected>Seleccioná un servicio...</option>
-            <option>Diagnóstico inicial gratuito</option>
-            <option>Rentabilidad y Control Financiero</option>
-            <option>Plan de Dirección Estratégica</option>
-            <option>Organización y Flujos de Trabajo</option>
-            <option>Jornada de Capacitación</option>
-            <option>Retainer Mensual</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Contanos tu situación</label>
-          <textarea placeholder="¿Cuál es el principal desafío de tu negocio hoy?"></textarea>
-        </div>
-        <button class="form-submit">Enviar consulta</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FOOTER ─────────────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-brand-name">ConFoodToria</div>
-      <p class="footer-brand-desc">Consultoría especializada en PyMEs gastronómicas y turístico-rurales de la provincia de Buenos Aires. Metodología Harvard. Resultados medibles.</p>
+      <div class="footer-brand">Con<em>Food</em>Toria</div>
+      <p class="footer-desc">Consultoría especializada en PyMEs gastronómicas y turístico-rurales. Corredor Ruta 5, Buenos Aires Provincia.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Páginas</div>
+      <ul class="footer-links">
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="casos.html">Casos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
     </div>
     <div>
       <div class="footer-col-title">Servicios</div>
       <ul class="footer-links">
-        <li><a href="#services">Rentabilidad Financiera</a></li>
-        <li><a href="#services">Plan Estratégico</a></li>
-        <li><a href="#services">Flujos de Trabajo</a></li>
-        <li><a href="#services">Capacitación</a></li>
-        <li><a href="#services">Retainer Mensual</a></li>
+        <li><a href="servicios.html">Control Financiero</a></li>
+        <li><a href="servicios.html">Plan Estratégico</a></li>
+        <li><a href="servicios.html">Flujos de Trabajo</a></li>
+        <li><a href="servicios.html">Capacitación</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Empresa</div>
+      <div class="footer-col-title">Contacto</div>
       <ul class="footer-links">
-        <li><a href="#about">Nosotros</a></li>
-        <li><a href="#methodology">Metodología</a></li>
-        <li><a href="#case-study">Caso Estancia Rodríguez</a></li>
-        <li><a href="#team">Equipo</a></li>
-        <li><a href="#contact">Contacto</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="contacto.html">Formulario</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 ConFoodToria SRL — Todos los derechos reservados</div>
-    <div class="footer-made">Buenos Aires Provincia, Argentina</div>
+    <span class="footer-copy">© 2026 ConFoodToria SRL — Buenos Aires, Argentina</span>
+    <span class="footer-copy">Metodología Harvard · Especialización Gastronómica</span>
   </div>
 </footer>
 
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// ─── Navbar scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+(function () {
+  const canvas = document.getElementById('hero-3d');
+  if (!canvas || typeof THREE === 'undefined') return;
 
-// ─── Intersection Observer for reveals
-const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), 0);
-      observer.unobserve(e.target);
+  const W = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+  const H = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(W, H);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
+  camera.position.z = 5.5;
+
+  // Materials
+  const mGold  = new THREE.LineBasicMaterial({ color: 0xB8893A, opacity: 0.75, transparent: true });
+  const mSand  = new THREE.LineBasicMaterial({ color: 0xC8B89E, opacity: 0.45, transparent: true });
+  const mLight = new THREE.LineBasicMaterial({ color: 0xEDE5D8, opacity: 0.30, transparent: true });
+
+  // Inner icosahedron (main shape)
+  const icoEdges = new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.3, 1));
+  const ico = new THREE.LineSegments(icoEdges, mGold);
+
+  // Three orbital rings (circles)
+  function makeRing(radius, segs, mat) {
+    const pts = [];
+    for (let i = 0; i <= segs; i++) {
+      const a = (i / segs) * Math.PI * 2;
+      pts.push(new THREE.Vector3(Math.cos(a) * radius, Math.sin(a) * radius, 0));
     }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-revealEls.forEach(el => observer.observe(el));
-
-// ─── Counter animation
-function animateCount(el) {
-  const target = parseInt(el.dataset.target);
-  const prefix = el.dataset.prefix || '';
-  const duration = 1600;
-  const start = performance.now();
-  const update = (now) => {
-    const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = prefix + Math.round(eased * target);
-    if (p < 1) requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
-}
-const statObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('[data-target]').forEach(animateCount);
-      statObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-const statsEl = document.getElementById('stats');
-if (statsEl) statObs.observe(statsEl);
-
-// ─── Particles
-(function() {
-  const canvas = document.getElementById('particles-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
-  const resize = () => {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  };
-  resize();
-  window.addEventListener('resize', resize);
-
-  for (let i = 0; i < 55; i++) {
-    particles.push({
-      x: Math.random() * 1000,
-      y: Math.random() * 700,
-      vx: (Math.random() - .5) * .3,
-      vy: (Math.random() - .5) * .3,
-      r: Math.random() * 1.5 + .5,
-      alpha: Math.random() * .4 + .1,
-    });
+    return new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), mat);
   }
 
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = W;
-      if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H;
-      if (p.y > H) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x / 1000 * W, p.y / 700 * H, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(253,250,245,${p.alpha})`;
-      ctx.fill();
-    });
+  const ring1 = makeRing(2.0, 120, mSand);
+  const ring2 = makeRing(2.5, 120, mLight);
+  const ring3 = makeRing(1.6, 120, mLight);
 
-    // connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = (particles[i].x - particles[j].x) / 1000 * W;
-        const dy = (particles[i].y - particles[j].y) / 700 * H;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 100) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x / 1000 * W, particles[i].y / 700 * H);
-          ctx.lineTo(particles[j].x / 1000 * W, particles[j].y / 700 * H);
-          ctx.strokeStyle = `rgba(201,168,76,${.12 * (1 - dist/100)})`;
-          ctx.lineWidth = .5;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
+  ring1.rotation.x = Math.PI / 2.5;
+  ring2.rotation.x = -Math.PI / 3;
+  ring2.rotation.y = Math.PI / 6;
+  ring3.rotation.x = Math.PI / 5;
+  ring3.rotation.z = Math.PI / 4;
+
+  const group = new THREE.Group();
+  group.add(ico, ring1, ring2, ring3);
+  scene.add(group);
+
+  // Mouse tracking
+  let tX = 0, tY = 0, cX = 0, cY = 0, base = 0;
+  window.addEventListener('mousemove', e => {
+    tX = (e.clientX / innerWidth  - 0.5) * 1.2;
+    tY = (e.clientY / innerHeight - 0.5) * 0.8;
+  });
+
+  (function animate() {
+    requestAnimationFrame(animate);
+    base += 0.004;
+    cX  += (tX - cX) * 0.04;
+    cY  += (tY - cY) * 0.04;
+    group.rotation.y = base + cX;
+    group.rotation.x = cY * 0.6 + Math.sin(base * 0.4) * 0.08;
+    renderer.render(scene, camera);
+  })();
+
+  window.addEventListener('resize', () => {
+    const w = canvas.offsetWidth, h = canvas.offsetHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  });
 })();
-
-// ─── Hero parallax on scroll
-window.addEventListener('scroll', () => {
-  const heroContent = document.querySelector('.hero-content');
-  if (!heroContent) return;
-  const y = window.scrollY;
-  heroContent.style.transform = `translateY(${y * .3}px)`;
-  heroContent.style.opacity = 1 - y / 500;
-});
-
-// ─── Hamburger (mobile)
-document.getElementById('hamburger').addEventListener('click', () => {
-  const nl = document.querySelector('.nav-links');
-  const open = nl.style.display === 'flex';
-  nl.style.cssText = open ? '' : `
-    display: flex; flex-direction: column; position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(44,26,6,.97); backdrop-filter: blur(20px);
-    align-items: center; justify-content: center; gap: 32px; z-index: 99;
-  `;
-  if (!open) {
-    nl.querySelectorAll('a').forEach(a => {
-      a.style.cssText = 'color:#fff; font-size:1.2rem;';
-      a.addEventListener('click', () => { nl.style.cssText = ''; }, { once: true });
-    });
-  }
-});
-
-// ─── Smooth form submit (demo)
-document.querySelector('.form-submit').addEventListener('click', function(e) {
-  e.preventDefault();
-  this.textContent = '✓ Consulta enviada';
-  this.style.background = '#4A8A4A';
-  setTimeout(() => {
-    this.textContent = 'Enviar consulta';
-    this.style.background = '';
-  }, 3000);
-});
 </script>
+<script src="js/main.js"></script>
 </body>
 </html>

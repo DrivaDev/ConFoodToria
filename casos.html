@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casos — ConFoodToria</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .timeline { list-style:none; position:relative; padding-left:32px; }
+    .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:var(--beige); }
+    .timeline li { position:relative; margin-bottom:36px; }
+    .timeline li::before { content:''; position:absolute; left:-36px; top:6px; width:8px; height:8px; border-radius:50%; background:var(--accent); border:2px solid var(--cream); box-shadow:0 0 0 1px var(--accent); }
+    .timeline-label { font-family:var(--sans); font-size:0.68rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+    .timeline-title { font-family:var(--serif); font-size:1.1rem; font-weight:400; color:var(--brown); margin-bottom:8px; }
+    .timeline-body { font-size:0.88rem; line-height:1.7; color:var(--brown-light); font-weight:300; }
+  </style>
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+  <a href="index.html" class="nav-logo">Con<em>Food</em>Toria</a>
+  <ul class="nav-links">
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="casos.html" class="active">Casos</a></li>
+    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-tag">Casos de éxito</div>
+    <h1 class="page-header-title">Estancia<br><em>Rodríguez</em></h1>
+  </div>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="img-frame" style="height:60vh; max-height:600px;" >
+  <img
+    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80"
+    alt="Estancia Rodríguez — Ruta 5, Buenos Aires"
+    style="width:100%; height:100%; object-fit:cover;"
+    loading="lazy"
+  />
+</div>
+
+<!-- OVERVIEW STATS -->
+<section style="background:var(--brown); padding:60px 64px;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0;">
+      <div style="padding:0 32px 0 0; border-right:1px solid rgba(255,255,255,.1);">
+        <div style="font-family:var(--serif); font-size:3.5rem; font-weight:300; color:var(--sand); letter-spacing:-0.03em; line-height:1; margin-bottom:8px;"><em>+35%</em></div>
+        <div style="font-family:var(--sans); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,.4);">Rentabilidad operativa</div>
+      </div>
+      <div style="padding:0 32px; border-right:1px solid rgba(255,255,255,.1);">
+        <div style="font-family:var(--serif); font-size:3.5rem; font-weight:300; color:var(--sand); letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">60</div>
+        <div style="font-family:var(--sans); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,.4);">Días de intervención</div>
+      </div>
+      <div style="padding:0 32px; border-right:1px solid rgba(255,255,255,.1);">
+        <div style="font-family:var(--serif); font-size:3.5rem; font-weight:300; color:var(--sand); letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">5</div>
+        <div style="font-family:var(--sans); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,.4);">Áreas reorganizadas</div>
+      </div>
+      <div style="padding:0 0 0 32px;">
+        <div style="font-family:var(--serif); font-size:3.5rem; font-weight:300; color:var(--sand); letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">100%</div>
+        <div style="font-family:var(--sans); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,.4);">Protocolos documentados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTEXT + PROBLEM -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1.6fr; gap:100px;" class="fade-up">
+      <div>
+        <div class="sec-tag">El cliente</div>
+        <h2 class="sec-title">Contexto del <em>establecimiento</em></h2>
+        <div style="margin-top:36px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--beige);">
+            <span style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sand-dark);">Tipo</span>
+            <span style="font-size:0.9rem; color:var(--brown);">Turístico-gastronómico rural</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--beige);">
+            <span style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sand-dark);">Ubicación</span>
+            <span style="font-size:0.9rem; color:var(--brown);">Ruta Nacional 5, Buenos Aires</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--beige);">
+            <span style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sand-dark);">Antigüedad</span>
+            <span style="font-size:0.9rem; color:var(--brown);">6 años en el mercado</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--beige);">
+            <span style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sand-dark);">Facturación</span>
+            <span style="font-size:0.9rem; color:var(--brown);">~$12M por fin de semana</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--beige);">
+            <span style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sand-dark);">Estructura</span>
+            <span style="font-size:0.9rem; color:var(--brown);">Familiar, gestión centralizada</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0;">
+            <span style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sand-dark);">Servicio contratado</span>
+            <span style="font-size:0.9rem; color:var(--brown);">Operaciones + Capacitación</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-tag">El problema</div>
+        <h2 class="sec-title">Alto potencial,<br><em>gestión informal</em></h2>
+        <p class="sec-body" style="margin-top:24px; margin-bottom:24px;">
+          Estancia Rodríguez era un negocio rentable y con demanda sostenida. Pero el crecimiento orgánico había llegado a un límite: sin estructura de gestión, cada fin de semana dependía de la capacidad de los dueños de estar presentes en absolutamente todo.
+        </p>
+        <p class="sec-body">
+          Cuando ConFoodToria realizó el diagnóstico inicial, identificó cinco áreas críticas que impedían escalar el negocio sin comprometer la calidad del servicio ni la salud de los dueños.
+        </p>
+        <div style="margin-top:36px; display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:flex-start; gap:14px; padding:16px; background:var(--cream); border-left:2px solid var(--beige);">
+            <svg style="width:18px; height:18px; flex-shrink:0; margin-top:2px; color:var(--accent);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span style="font-size:0.88rem; color:var(--brown-light); line-height:1.6; font-weight:300;">Descoordinación operativa entre cocina, salón y administración</span>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:14px; padding:16px; background:var(--cream); border-left:2px solid var(--beige);">
+            <svg style="width:18px; height:18px; flex-shrink:0; margin-top:2px; color:var(--accent);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span style="font-size:0.88rem; color:var(--brown-light); line-height:1.6; font-weight:300;">Ausencia de protocolos de trabajo — cada empleado lo hacía "a su manera"</span>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:14px; padding:16px; background:var(--cream); border-left:2px solid var(--beige);">
+            <svg style="width:18px; height:18px; flex-shrink:0; margin-top:2px; color:var(--accent);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span style="font-size:0.88rem; color:var(--brown-light); line-height:1.6; font-weight:300;">Control financiero reactivo — sin márgenes reales por servicio</span>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:14px; padding:16px; background:var(--cream); border-left:2px solid var(--beige);">
+            <svg style="width:18px; height:18px; flex-shrink:0; margin-top:2px; color:var(--accent);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span style="font-size:0.88rem; color:var(--brown-light); line-height:1.6; font-weight:300;">Alta rotación de personal por falta de capacitación sistemática</span>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:14px; padding:16px; background:var(--cream); border-left:2px solid var(--beige);">
+            <svg style="width:18px; height:18px; flex-shrink:0; margin-top:2px; color:var(--accent);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span style="font-size:0.88rem; color:var(--brown-light); line-height:1.6; font-weight:300;">Gestión completamente centralizada en los dueños, sin posibilidad de delegar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROCESS -->
+<section>
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-tag">Nuestra intervención</div>
+      <h2 class="sec-title">El proceso paso<br>a <em>paso</em></h2>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:100px; margin-top:56px;" class="fade-in" style="transition-delay:.15s;">
+      <ul class="timeline">
+        <li>
+          <div class="timeline-label">Semana 1 — 2</div>
+          <div class="timeline-title">Diagnóstico presencial</div>
+          <p class="timeline-body">Relevamiento in-situ de las cinco áreas operativas. Entrevistas con los dueños, observación de servicio en fin de semana real, análisis de registros financieros disponibles.</p>
+        </li>
+        <li>
+          <div class="timeline-label">Semana 3 — 4</div>
+          <div class="timeline-title">Diseño de soluciones</div>
+          <p class="timeline-body">Elaboración de protocolos por área, rediseño del flujo operativo entre cocina y salón, diseño del tablero de control financiero con los KPIs prioritarios.</p>
+        </li>
+        <li>
+          <div class="timeline-label">Semana 5 — 7</div>
+          <div class="timeline-title">Implementación</div>
+          <p class="timeline-body">Puesta en marcha de los nuevos protocolos con acompañamiento presencial. Tres jornadas de capacitación por área: cocina, salón y administración.</p>
+        </li>
+        <li>
+          <div class="timeline-label">Semana 8 — 9</div>
+          <div class="timeline-title">Ajuste y cierre</div>
+          <p class="timeline-body">Dos fines de semana de observación post-implementación para ajustar lo que no funcionó como se esperaba. Entrega del informe final documentado.</p>
+        </li>
+      </ul>
+      <div class="split-img img-frame" style="aspect-ratio:3/4; align-self:start;">
+        <img
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+          alt="Proceso de trabajo en establecimiento gastronómico"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- RESULTS -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-tag">Resultados</div>
+      <h2 class="sec-title">Lo que cambió en<br><em>60 días</em></h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; border:1px solid var(--beige);" class="fade-in" style="transition-delay:.15s;">
+      <div style="padding:40px 32px; border-right:1px solid var(--beige);">
+        <div style="font-family:var(--serif); font-size:3.2rem; font-weight:300; color:var(--accent); line-height:1; margin-bottom:16px; letter-spacing:-0.03em;"><em>+35%</em></div>
+        <div style="font-family:var(--serif); font-size:1.05rem; color:var(--brown); margin-bottom:10px;">Rentabilidad operativa</div>
+        <p style="font-size:0.84rem; color:var(--brown-light); line-height:1.7; font-weight:300;">Combinación de reducción de desperdicios, mejor control de porciones y eliminación de gastos no monitoreados.</p>
+      </div>
+      <div style="padding:40px 32px; border-right:1px solid var(--beige);">
+        <div style="font-family:var(--serif); font-size:3.2rem; font-weight:300; color:var(--accent); line-height:1; margin-bottom:16px; letter-spacing:-0.03em;"><em>−40%</em></div>
+        <div style="font-family:var(--serif); font-size:1.05rem; color:var(--brown); margin-bottom:10px;">Errores de servicio</div>
+        <p style="font-size:0.84rem; color:var(--brown-light); line-height:1.7; font-weight:300;">Los protocolos de comunicación entre cocina y salón redujeron drásticamente los pedidos equivocados y las demoras innecesarias.</p>
+      </div>
+      <div style="padding:40px 32px;">
+        <div style="font-family:var(--serif); font-size:3.2rem; font-weight:300; color:var(--accent); line-height:1; margin-bottom:16px; letter-spacing:-0.03em;">100%</div>
+        <div style="font-family:var(--serif); font-size:1.05rem; color:var(--brown); margin-bottom:10px;">Autonomía del equipo</div>
+        <p style="font-size:0.84rem; color:var(--brown-light); line-height:1.7; font-weight:300;">Los dueños dejaron de ser necesarios en cada decisión operativa del día. El equipo funciona con criterio propio y documentación clara.</p>
+      </div>
+    </div>
+
+    <!-- Testimonial -->
+    <div style="margin-top:64px; padding:48px 56px; background:var(--brown);" class="fade-up">
+      <svg style="width:32px; height:32px; color:var(--accent); margin-bottom:20px; opacity:.6;" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+      <blockquote style="font-family:var(--serif); font-size:1.5rem; font-weight:300; font-style:italic; color:var(--white); line-height:1.5; max-width:700px; margin-bottom:24px;">
+        "Antes de la consultoría, el negocio funcionaba a pesar de la desorganización. Después, empezamos a crecer gracias a la estructura."
+      </blockquote>
+      <div style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--sand);">Propietario, Estancia Rodríguez</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">¿Tu negocio tiene un problema<br><em>similar al de Estancia Rodríguez</em>?</h2>
+    <a href="contacto.html" class="btn btn-light">
+      Hablemos
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Con<em>Food</em>Toria</div>
+      <p class="footer-desc">Consultoría especializada en PyMEs gastronómicas y turístico-rurales. Corredor Ruta 5, Buenos Aires Provincia.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Páginas</div>
+      <ul class="footer-links">
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="casos.html">Casos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Servicios</div>
+      <ul class="footer-links">
+        <li><a href="servicios.html">Control Financiero</a></li>
+        <li><a href="servicios.html">Plan Estratégico</a></li>
+        <li><a href="servicios.html">Flujos de Trabajo</a></li>
+        <li><a href="servicios.html">Capacitación</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contacto</div>
+      <ul class="footer-links">
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="contacto.html">Formulario</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 ConFoodToria SRL — Buenos Aires, Argentina</span>
+    <span class="footer-copy">Metodología Harvard · Especialización Gastronómica</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
