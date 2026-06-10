@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "confoodtoria",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "3000", "."],
+      "name": "cft-next",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "port": 3000
     }
   ]
