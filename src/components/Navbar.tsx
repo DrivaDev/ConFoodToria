@@ -32,9 +32,13 @@ export default function Navbar() {
     >
       <Link
         href="/"
-        className="font-serif text-[1.35rem] font-normal text-brown tracking-[-0.01em]"
+        className="flex items-center gap-2.5"
+        aria-label="ConFOODToria"
       >
-        Con<em className="font-light italic">Food</em>Toria
+        <img src="/icon.svg" alt="" className="w-8 h-8" aria-hidden />
+        <span className="font-sans font-bold text-[1.1rem] tracking-[-0.01em] text-brown">
+          Con<span className="text-gold">FOOD</span>Toria
+        </span>
       </Link>
 
       {/* Desktop links */}

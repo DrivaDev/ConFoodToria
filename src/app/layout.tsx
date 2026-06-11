@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   title: "ConFoodToria — Consultoría Gastronómica",
   description:
     "Consultoría especializada en PyMEs gastronómicas y turístico-rurales de Buenos Aires provincia. Metodología Harvard.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 }
 
 export default function RootLayout({
