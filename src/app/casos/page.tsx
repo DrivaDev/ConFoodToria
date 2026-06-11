@@ -84,25 +84,6 @@ export default function Casos() {
         />
       </div>
 
-      {/* STATS BAR */}
-      <div className="bg-brown">
-        <div className="max-w-[1200px] mx-auto px-8 md:px-16 py-14 grid grid-cols-2 md:grid-cols-4 gap-0">
-          {[
-            { val: "+35%", label: "Rentabilidad operativa" },
-            { val: "60", label: "Días de intervención" },
-            { val: "5", label: "Áreas reorganizadas" },
-            { val: "100%", label: "Protocolos documentados" },
-          ].map(({ val, label }) => (
-            <div key={label} className="p-6 border-r border-white/10 last:border-r-0">
-              <div className="font-serif text-[3rem] font-light text-sand leading-none mb-2 tracking-[-0.03em]">
-                <em className="italic">{val}</em>
-              </div>
-              <div className="font-sans text-[0.6rem] font-semibold tracking-[0.12em] uppercase text-white/40">{label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <hr className="border-beige" />
 
       {/* CONTEXT + PROBLEM */}
