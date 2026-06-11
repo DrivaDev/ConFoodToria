@@ -102,24 +102,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 border border-beige mt-20">
-            {[
-              { num: "63", label: "Establecimientos en zona de influencia" },
-              { num: "6", label: "Consultores universitarios especializados" },
-              { num: "5", label: "Fases metodología Harvard" },
-              { num: "+12%", label: "Crecimiento anual del sector" },
-            ].map(({ num, label }) => (
-              <div key={label} className="p-8 border-b md:border-b-0 border-r last:border-r-0 border-beige">
-                <div className="font-serif text-[2.8rem] font-light text-gold leading-none mb-3 tracking-[-0.03em]">
-                  <em className="italic">{num}</em>
-                </div>
-                <div className="font-sans text-[0.65rem] font-medium tracking-[0.08em] uppercase text-sand-dark leading-snug">
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -187,22 +169,6 @@ export default function Home() {
           <p className="text-[0.9rem] text-brown-light leading-relaxed font-light mb-8">
             Establecimiento turístico-gastronómico en la Ruta 5. Alto potencial, gestión completamente informal. Nuestra intervención reorganizó operaciones, implementó control financiero y capacitó al equipo en 60 días.
           </p>
-          <div className="grid grid-cols-3 gap-6 mb-10 border-t border-beige pt-8">
-            {[
-              { val: "+35%", key: "Rentabilidad operativa" },
-              { val: "60", key: "Días de intervención" },
-              { val: "5", key: "Áreas reorganizadas" },
-            ].map(({ val, key }) => (
-              <div key={key}>
-                <div className="font-serif text-[2rem] font-light text-gold leading-none mb-2 tracking-[-0.02em]">
-                  <em className="italic">{val}</em>
-                </div>
-                <div className="font-sans text-[0.6rem] font-medium tracking-[0.08em] uppercase text-sand-dark">
-                  {key}
-                </div>
-              </div>
-            ))}
-          </div>
           <BtnOutline href="/casos">
             Ver caso completo <ArrowRight />
           </BtnOutline>
